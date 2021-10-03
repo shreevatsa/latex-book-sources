@@ -2,7 +2,7 @@
 
 Here is the LaTeX source code that went into the creation of these books in Devanagari, beautifully typeset by Nityanand Misra:
 
-*   _Mahāvīrī: Hanumān-Cālīsā Demystified_
+*   _Śrī-Hanumān-Cālīsā (Mahāvīrī Vyākhyā Sahita)_
 
     Hindi commentary by Svāmī Rāmabhadrācārya on the Hanumān-Cālīsā
 
