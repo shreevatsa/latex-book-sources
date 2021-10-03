@@ -1,0 +1,314 @@
+% !TeX TS-program = lualatex
+% This file is part of Mahāvīrī LaTeX Source Code
+% Mahāvīrī LaTeX Source Code is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+% Mahāvīrī LaTeX Source Code is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+% You should have received a copy of the GNU General Public License along with Mahāvīrī LaTeX Source Code. If not, see <https://www.gnu.org/licenses/>.
+% With the fonts and the cover and plate PDF, this code compiled successfully on LuaLaTeX, TeX Live version 2020
+
+% Book
+\documentclass[luatex,twoside]{book}
+% Set up the geometry
+\usepackage[showframe=false,dvips=false,pdftex=false,vtex=false,top=2.25cm,left=16.5mm,bottom=0.75in,right=15mm,paperwidth=138mm,paperheight=216mm]{geometry}
+% Set up the bleed and crop marks (if needed)
+% Bleed and crop marks are useful only for printing, for the digital release they were not used
+% \usepackage[noaxes,noinfo,cam,dvips,pdftex,center,height=222mm,width=144mm]{crop}
+\usepackage{emptypage}
+\usepackage{relsize}
+\usepackage{tocloft}
+\usepackage{calc}
+\usepackage{fancyhdr}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{longtable,ltabptch}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{titlesec} 
+\usepackage[perpage]{footmisc}
+\renewcommand{\footnotesize}{\large}
+% Set up the fonts
+\usepackage{babel}
+\usepackage{fontspec}
+\babelprovide[mapdigits,main]{hindi}
+% Harfbuzz encoding
+\babelfont{rm}[Renderer=HarfBuzz,Script=Devanagari, Path = ./, Extension = .ttf,UprightFont = *-Regular, BoldItalicFont = *-BoldItalic, BoldFont = *-Bold, ItalicFont = *-Italic, Mapping=devanagaridigits]{ChanakyaSanskrit}
+\babelfont[english]{rm}[Path = ./, Extension = .ttf,UprightFont = *R, BoldItalicFont = *BI, BoldFont = *B, ItalicFont = *I]{CharisSIL}
+\newfontfamily\devanagarifont[Renderer=Harfbuzz,Script=Devanagari, Path = ./, Extension = .ttf,UprightFont = *-Regular, BoldItalicFont = *-BoldItalic, BoldFont = *-Bold, ItalicFont = *-Italic, Mapping=devanagaridigits]{ChanakyaSanskrit}
+\newfontfamily\englishfont[Path = ./, Extension = .ttf,UprightFont = *R, BoldItalicFont = *BI, BoldFont = *B, ItalicFont = *I]{CharisSIL}
+\newfontfamily\unifont[Path = ./, Extension = .ttf, UprightFont = *, BoldItalicFont = *, BoldFont = *, ItalicFont = *, AutoFakeBold=2.0]{arialunicodems}
+\usepackage[singlelinecheck=off]{caption}
+\DeclareCaptionFormat{myformat}{\fontsize{15.5}{\baselineskip}\selectfont#1#2#3}
+\captionsetup{aboveskip=0pt,belowskip=0pt,margin=0pt,justification=raggedleft,font=md,format=myformat}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\chaptertitlename}
+  {0pt}
+  {}
+  []
+\titlespacing{\chapter}{0pt}{30pt}{15pt}
+\def\pfill{\unskip~\dotfill\penalty500 
+  \strut\nobreak\leaders\hbox to.6em{\hss.\hss}\hfil~\ignorespaces}
+\def\efill{\hfill\nopagebreak}
+\usepackage{ragged2e}
+\raggedbottom
+\usepackage{metalogo}
+\newcommand{\parasepone}{
+\vspace{-5mm}
+\begin{center} 
+   \includegraphics[scale=1]{vectorianseparator01.png} 
+\end{center}
+\vspace{-2mm}}
+\newcommand{\paraseplotus}{
+\vspace{-1mm}
+\begin{center} 
+   \includegraphics[scale=1]{lotus.png} 
+\end{center}
+\vspace{-5mm}}
+\usepackage{pdfpages}
+% No hyphenation: see here
+% https://tex.stackexchange.com/questions/5036/how-to-prevent-latex-from-hyphenating-the-entire-document/5039
+% \usepackage{luahyphenrules}
+\tolerance=9999
+\emergencystretch=10pt
+\hyphenpenalty=10000
+\exhyphenpenalty=100
+\usepackage{imakeidx}
+\makeindex[options=-s ./index,intoc,name=ardha,title={पद्यार्धानुक्रमणी},columns=1] 
+\makeindex[options=-s ./index,intoc,name=pada,title={शब्दानुक्रमणी},columns=2]
+\usepackage{hyperref,bookmark}
+\hypersetup{
+	pdftitle={Hanumān-Cālīsā: Mahāvīrī Vyākhā Sahita},
+	pdfauthor={Jagadguru Rāmānandācārya Svāmī Rāmabhadrācārya},
+	pdfkeywords={Hanuman Chalisa, Hanuman, Hanumān-Cālīsā, Commentary, Meaning},
+	pdfsubject={Hindi commentary by Svāmī Rāmabhadrācārya on the Hanumān-Cālīsā},
+	bookmarksnumbered,
+	pdfpagelayout=TwoPageRight,
+	bookmarksopen=true,
+	pdfstartview={FitH},
+	hidelinks
+}
+\begin{document}
+
+\newlength{\mylenone}
+\newlength{\mylentwo}
+\newlength{\mylen}
+\newlength{\myl}
+
+\frontmatter
+\renewcommand{\cftchappagefont}{\bfseries}
+\fancypagestyle{plain}{ %
+  \fancyhf{} % remove everything
+  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+  \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{empty}
+\pagenumbering{empty}
+
+% Front cover from the cover PDF
+% This is the ideal option, to include it as a PDF in which case the text is included as text
+% \includepdf[pages=1,trim=142.5mm 0mm 4mm 0mm,clip]{MahaviriCover}
+% This is the other option. As the cover is currently produced using pstricks in XeLaTeX, it is without Harfbuzz encoding and the glyphs in the Devanagari text may not be rendered properly on sites like academia. So, it was imported as an image for the file on academia.org. 
+\begin{figure}[p]
+\vspace*{-2.25cm}
+\hspace*{-1.65cm}
+% For the Mahāvīrī LaTeX Source Code, include as PDF
+\makebox[\pagewidth]{\includegraphics[trim=142.5mm 0mm 4mm 0mm, width=\pagewidth]{MahaviriCover.pdf}}
+% For the file on academia, include as image
+% \makebox[\pagewidth]{\includegraphics[trim=142.5mm 0mm 4mm 0mm, width=\pagewidth]{MahaviriCover.png}}
+\end{figure}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{4mm}
+{\fontsize{20}{24}\selectfont \textbf{श्रीहनुमान्‌-चालीसा—\textit{महावीरी} व्याख्या सहित}}\\
+\end{center}
+\cleardoublepage
+\thispagestyle{empty}
+\begin{center}
+\vspace*{4.5mm}
+{\fontsize{36}{54}\selectfont \textbf{श्रीहनुमान्‌-चालीसा}}\\
+\vspace*{4.5mm}
+{\fontsize{28}{42}\selectfont \textbf{\textit{महावीरी} व्याख्या सहित}}\\
+\vspace*{10mm}
+{\fontsize{18}{24}\selectfont (मूलपाठ, विशिष्टशब्दार्थ, सामान्यार्थ, व्याख्या,}\\
+\vspace*{1mm}
+{\fontsize{18}{24}\selectfont  पद्यार्धानुक्रमणी, और शब्दानुक्रमणी सहित}\\
+\vspace*{1mm}
+{\fontsize{18}{24}\selectfont  भक्तशिरोमणि गोस्वामी तुलसीदासकी सिद्ध रचना)}\\
+\vfill
+{\fontsize{16}{22}\selectfont व्याख्याकार}\\
+\vspace*{2.5mm}
+{\fontsize{20}{30}\selectfont पद्मविभूषण-विभूषित जगद्गुरु रामानन्दाचार्य}\\
+\vspace*{2mm}
+{\fontsize{26}{39}\selectfont \textbf{स्वामी रामभद्राचार्य}}\\
+\vfill
+{\fontsize{18}{27}\selectfont चतुर्थ संस्करण}\\
+\vfill
+{\fontsize{16}{24}\selectfont जगद्गुरु रामभद्राचार्य दिव्याङ्ग विश्वविद्यालय, चित्रकूट}\\
+\vspace*{2.5mm}
+{\fontsize{16}{24}\selectfont विक्रम संवत् २०७८}
+\vspace*{4.5mm}
+\end{center}
+\pagebreak
+\thispagestyle{empty}
+\begin{center}
+\vspace*{2.5mm}
+{\devanagarifont\fontsize{15}{17.5}\selectfont \textbf{प्रकाशक}}\\
+\vspace*{1.25mm}
+{\fontsize{15}{17.5}\selectfont जगद्गुरु रामभद्राचार्य  दिव्याङ्ग विश्वविद्यालय}\\
+\vspace*{0.5mm}
+{\fontsize{15}{17.5}\selectfont कर्वी, चित्रकूट}\\
+\vspace*{0.5mm}
+{\fontsize{15}{17.5}\selectfont उत्तरप्रदेश २१०२०४, भारत}\\
+\vfill
+{\devanagarifont\fontsize{15}{17.5}\selectfont चतुर्थ  संस्करण (पाँच सहस्र प्रतियाँ): चित्रकूट, विक्रम संवत् २०७८}\\
+\vfill
+{\englishfont \fontsize{12}{13}\selectfont © }{\devanagarifont\fontsize{15}{17.5}\selectfont विक्रम संवत् २०४१–२०७८ स्वामी रामभद्राचार्य}\\
+\vfill
+{\englishfont \fontsize{11}{13}\selectfont \foreignlanguage{english}{ISBN-13: 978-93-82253-07-5}}\\
+\vfill
+{\devanagarifont\fontsize{15}{17.5}\selectfont आवरण-चित्र: भँवरलाल गिरधारीलाल शर्मा\\
+\vspace*{1mm}
+{\englishfont \fontsize{12}{13}\selectfont ©} बी.~जी.~शर्मा आर्ट गैलरी, उदयपुर}\\
+\vfill
+{\devanagarifont\fontsize{15}{17.5}\selectfont आवरण-रूपरेखा: नित्यानन्द मिश्र}\\
+\vfill
+{\devanagarifont\fontsize{15}{17.5}\selectfont \textbf{चाणक्य संस्कृत} और {\englishfont {\relscale{0.8} \textbf{Charis SIL}}}में अक्षर-संयोजन: नित्यानन्द मिश्र}\\
+\vfill
+{\englishfont \fontsize{11}{13}\selectfont Ornaments from Vectorian Free Vector Pack by Webalys\\www.vectorian.net}\\
+\vfill
+{\devanagarifont\fontsize{15}{17.5}\selectfont \textbf{मुद्रक}}\\{\englishfont \fontsize{11}{13}\selectfont \foreignlanguage{english}{Dhote Offset Technokrafts Pvt. Ltd.\\C/203 Sintofine Industrial Estate\\Vishweshwar Nagar Road, Goregaon (East)\\Mumbai 400063, India}}\\
+\end{center}
+\end{titlepage}
+
+% Include the plate from the plate PDF
+% This is the ideal option, to include it as a PDF in which case the text is included as text
+% \includepdf[pages=1,trim=3mm 3mm 3mm 3mm,clip]{MahaviriPlate}
+% This is the other option. As the plate is currently produced using pstricks in XeLaTeX, it is without Harfbuzz encoding and the glyphs in the Devanagari text may not be rendered properly on sites like academia. So, it was imported as an image for the file on academia.org.
+\begin{figure}[p]
+\vspace*{-2.25cm}
+\hspace*{-1.65cm}
+% For the Mahāvīrī LaTeX Source Code, include as PDF
+\makebox[\pagewidth]{\includegraphics[trim=3mm 3mm 3mm 3mm, clip, width=\pagewidth]{MahaviriPlate.pdf}}
+% For the file on academia, include as image
+% \makebox[\pagewidth]{\includegraphics[trim=3mm 3mm 3mm 3mm, clip, width=\pagewidth]{MahaviriPlate.png}}
+\end{figure}
+
+% Default fontsize	
+\phantomsection
+{\pdfbookmark[0]{संकेताक्षर-सूची}{}	
+\chapter*{संकेताक्षर-सूची}	
+\thispagestyle{empty}	
+\fontsize{13.5}{17}\selectfont	
+%\begin{longtable}{|p{15mm}|l|}	
+\begin{longtable}{p{20mm}l}	
+\input{ss}	
+\end{longtable}	
+\vspace*{2.5mm}	
+\paraseplotus	
+\cleardoublepage	
+
+\fontsize{15.5}{20}\selectfont
+\fancyhead[RE,LO]{}	
+\fancyhead[LE,RO]{}	
+\setlength\cftbeforechapskip{3mm}	
+\setlength\cftaftertoctitleskip{0pt}	
+\phantomsection
+\renewcommand{\contentsname}{विषय-सूची}	
+{\pdfbookmark[0]{विषय-सूची}{}	
+\tableofcontents	
+\paraseplotus	
+%\thispagestyle{empty}	
+\cleardoublepage}
+
+\mainmatter	
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\pagenumbering{arabic}
+\fancyfoot[C]{\Large\thepage}
+
+%\renewcommand{\cftchappagefont}{\bfseries}	
+\justifying	
+\phantomsection	
+\addcontentsline{toc}{chapter}{सम्पादकीय}	
+\chapter*{सम्पादकीय}	
+\thispagestyle{empty}	
+\input{sampadakiya}	
+\cleardoublepage
+
+\justifying	
+\phantomsection	
+\addcontentsline{toc}{chapter}{आमुख}	
+\chapter*{आमुख}	
+\thispagestyle{empty}	
+\input{aamukha}	
+\cleardoublepage
+
+\setcounter{footnote}{0}	
+\justifying	
+\phantomsection	
+\addcontentsline{toc}{chapter}{\textit{महावीरी} व्याख्या}	
+\chapter*{\textit{महावीरी} व्याख्या}	
+\thispagestyle{empty}	
+\input{mahavirihindi}	
+
+% \backmatter
+
+\thispagestyle{empty}
+\justifying
+\fancyhead[RE,LO]{{\textmd{\large \textit{महावीरी} व्याख्या}}}
+\fancyhead[LE,RO]{{\textmd{\large पद्यार्धानुक्रमणी}}}
+\fontsize{13.5}{16.5}\selectfont
+\indexprologue{\begin{sloppypar}\justifying\hyphenrules{nohyphenation}इस अनुक्रमणीमें \textit{श्रीहनुमान्‌-चालीसा}के सभी ८६~पद्यार्ध (तीन~दोहोंके छः~दल और चालीस~चौपाइयोंकी अस्सी~अर्धालियाँ) अकारादिक्रमसे सूचित हैं। प्रत्येक पद्यार्धके बाद कोष्ठकमें पद्य-संख्या और पूर्वार्ध/उत्तरार्ध दिए गए हैं। पद्य-संख्याके लिए \textit{म}ङ्गलाचरण-\textit{दो}हाको \textbf{म.दो.}, \textit{चौ}पाईको \textbf{चौ.}, और \textit{उ}पसंहार-\textit{दो}हाको \textbf{उ.दो.}—इस प्रकारसे संकेतित किया गया है। तत्तत् पद्यार्धकी प्रस्तुत संस्करणमें \textit{महावीरी} व्याख्याकी पृष्ठ-संख्या दाहिनी ओर दिखाई गई है।\end{sloppypar}}
+\vspace*{-10mm}
+\printindex[ardha]
+\paraseplotus
+% \cleardoublepage
+
+\thispagestyle{empty}
+\justifying
+\fancyhead[RE,LO]{{\textmd{\large \textit{महावीरी} व्याख्या}}}
+\fancyhead[LE,RO]{{\textmd{\large शब्दानुक्रमणी}}}
+\fontsize{13.5}{16.5}\selectfont
+\indexprologue{\begin{sloppypar}\justifying इस अनुक्रमणीमें \textit{श्रीहनुमान्‌-चालीसा}में प्रयुक्त सभी शब्द अकारादिक्रमसे सूचित हैं। तत्तत् शब्दके अवयवी दोहा अथवा चौपाईकी \textit{महावीरी} व्याख्याकी प्रस्तुत संस्करणमें पृष्ठ-संख्या (अथवा पृष्ठ-संख्याएँ) दाहिनी ओर दिखाई गई है (अथवा गईं हैं)। पाठकोंकी सुविधाके लिए \textit{रघुबर-बिमल-जस} आदि दीर्घ समासोंका प्रायः विग्रह करके \textit{रघुबर}, \textit{बिमल}, और \textit{जस} आदि घटक पदोंको स्वतन्त्र रूपसे सूचित किया गया है। जिन समासोंका संज्ञाके रूपमें व्यवहार है अथवा जिनके पश्चात् तद्धित प्रत्ययका विधान है (यथा \textit{रघुबर}, \textit{बजरंगी}, \textit{पवनतनय} इत्यादि), उन समासोंको प्रायः यथावत् (समस्त रूपमें) सूचित किया गया है।\end{sloppypar}}
+\vspace*{-10mm}
+\printindex[pada]
+\paraseplotus
+\cleardoublepage
+
+\setcounter{footnote}{0}
+\thispagestyle{empty}
+\justifying
+\fancyhead[RE,LO]{{\textmd{\large \textit{महावीरी} व्याख्या}}}
+\fancyhead[LE,RO]{{\textmd{\large हनुमान्‌जीकी आरती}}}
+\phantomsection
+\addcontentsline{toc}{chapter}{हनुमान्‌जीकी आरती}
+\chapter*{हनुमान्‌जीकी आरती}
+\fontsize{15.5}{20}\selectfont
+\input{arati}
+\paraseplotus
+\cleardoublepage
+
+\thispagestyle{empty}
+\ % The empty page
+
+\newpage
+\thispagestyle{empty}
+% Back cover from the cover PDF
+% This is the ideal option, to include it as a PDF in which case the text is included as text
+% \includepdf[pages=1,trim=3.5mm 0mm 143mm 0mm,clip]{MahaviriCover}
+% This is the other option. As the cover is currently produced using pstricks in XeLaTeX, it is without Harfbuzz encoding and the glyphs in the Devanagari text may not be rendered properly on sites like academia. So, it was imported as an image for the file on academia.org.
+\begin{figure}[p]
+\vspace*{-2.25cm}
+\hspace*{-1.5cm}
+% For the Mahāvīrī LaTeX Source Code, include as PDF
+\makebox[\pagewidth]{\includegraphics[trim=3.5mm 0mm 143mm 0mm, width=\pagewidth]{MahaviriCover.pdf}}
+% For the file on academia, include as image
+% \makebox[\pagewidth]{\includegraphics[trim=3.5mm 0mm 143mm 0mm, width=\pagewidth]{MahaviriCover.png}}
+\end{figure}
+
+\end{document}

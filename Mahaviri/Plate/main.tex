@@ -1,0 +1,59 @@
+% !TeX TS-program = xelatex
+% This file is part of Mahāvīrī LaTeX Source Code
+% Mahāvīrī LaTeX Source Code is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+% Mahāvīrī LaTeX Source Code is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+% You should have received a copy of the GNU General Public License along with Mahāvīrī LaTeX Source Code. If not, see <https://www.gnu.org/licenses/>.
+% This code was compiled on 
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{ragged2e}
+\newlength{\bleed}
+\newlength{\mylength}
+\newlength{\width}
+\newlength{\height}
+\newlength{\pdfwidth}
+\newlength{\pdfheight}
+\setlength{\bleed}{3mm}
+\setlength{\width}{138mm}
+\setlength{\height}{216mm}
+\setlength{\pdfwidth}{\width*\real{1.0} + \bleed*\real{2.0}}
+\setlength{\pdfheight}{\height + \bleed*\real{2.0}}
+\usepackage[dvips=false,pdftex=false,vtex=false,margin=0in,paperwidth=\width,paperheight=\height]{geometry}
+\usepackage[noaxes,noinfo,cam,dvips,pdftex,center,width=\the\pdfwidth,height=\the\pdfheight]{crop}
+\usepackage[dvipsnames,prologue,table]{pstricks}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% ISBN is 978-81-931144-1-4
+\usepackage[ISBN=978-81-931144-1-4]{ean13isbn}
+\usepackage{polyglossia}
+\setmainlanguage{hindi}
+\setmainfont[Script=Devanagari, Path = ./, Extension = .ttf,UprightFont = *-Regular, BoldItalicFont = *-BoldItalic, BoldFont = *-Bold, ItalicFont = *-Italic, Mapping=devanagaridigits]{ChanakyaSanskrit}
+\usepackage{hyperref}
+\hypersetup{
+	pdfstartview={XYZ null null 1},
+	bookmarks=false
+}
+\setlength{\parindent}{0pt}
+\begin{document}
+\pagecolor{white}
+\pagestyle{empty}
+\psset{unit=1in}
+\begin{pspicture}(\width,\height)
+% Text above the image
+\rput[lb](0mm,194mm){\parbox{\width}{\centering\fontsize{18}{27}\selectfont\color{red}{\textit{श्रीहनुमान्‌-चालीसा}के प्रशस्त व्याख्याकार}}}
+% The image
+\newsavebox\IBox
+\setlength{\mylength}{\width*\real{0.5} - 45mm}
+\fboxsep=0pt%padding thickness
+\fboxrule=1pt%border thickness
+\sbox\IBox{\fcolorbox{red}{yellow}{\includegraphics[width=90mm]{image.jpeg}}}
+\rput[lb](\mylength,55mm){\usebox\IBox}
+% Text below the image
+\rput[lb](0mm,45mm){\parbox{\width}{\centering\fontsize{18}{27}\selectfont\color{red}{धर्मचक्रवर्ती महामहोपाध्याय वाचस्पति कविकुलरत्न महाकवि}}}
+\rput[lb](0mm,37.5mm){\parbox{\width}{\centering\fontsize{18}{27}\selectfont\color{red}{प्रस्थानत्रयीभाष्यकार श्रीचित्रकूटतुलसीपीठाधीश्वर}}}
+\rput[lb](0mm,30mm){\parbox{\width}{\centering\fontsize{18}{27}\selectfont\color{red}{ऋतम्भराचक्षु पद्मविभूषण-विभूषित जगद्गुरु रामानन्दाचार्य
+}}}
+\rput[lb](0mm,21.5mm){\parbox{\width}{\centering\fontsize{26}{39}\selectfont\color{red}{\textbf{स्वामी रामभद्राचार्य}}}}
+\rput[lb](0mm,15mm){\parbox{\width}{\centering\fontsize{18}{27}\selectfont\color{red}{(१९५०–)}}}
+\end{pspicture}
+\end{document}
