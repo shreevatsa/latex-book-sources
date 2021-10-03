@@ -1,0 +1,6 @@
+[submodule "ARAPV/nmisra-arapv"]
+	path = ARAPV/nmisra-arapv
+	url = https://github.com/shreevatsa/nmisra-arapv
+[submodule "Mularthabodhini/xelatex-mularthabodhini"]
+	path = Mularthabodhini/xelatex-mularthabodhini
+	url = https://github.com/shreevatsa/xelatex-mularthabodhini
